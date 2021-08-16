@@ -1,3 +1,4 @@
+const { request } = require('express');
 var express = require('express');
 var router = express.Router();
 
@@ -14,6 +15,19 @@ router.get('/quote', function(req, res, next) {
   );
 
   res.json({quote: quotes[randomQuoteIndex]});
+});
+
+const users = [];
+
+router.get('/create-user', function(req, res, next) {
+  console.log('request body: ', req.body);
+
+  users.push({ userName: req.body.userName, age: req.body.age});
+
+  console.log('all users: ',  users);
+
+  res.json({success: true });
+  
 });
 
 module.exports = router;
